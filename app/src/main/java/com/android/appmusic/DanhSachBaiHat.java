@@ -1,11 +1,15 @@
 package com.android.appmusic;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -29,7 +33,7 @@ public class DanhSachBaiHat extends AppCompatActivity {
     EditText edtSearch;
     Button btnSearch;
     ArrayList<String> arrayNameMusic;
-
+    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,5 +94,36 @@ public class DanhSachBaiHat extends AppCompatActivity {
         arraySong.add(new Song("You are the reason", "Calum Scott","Sad Song",R.drawable.youarethereason, R.raw.youarethereason));
         arraySong.add(new Song("Bad Liar", "Imagine Dragons","Sad Song",R.drawable.barliar, R.raw.barliar));
         arraySong.add(new Song("So far away", "David Guetta","Sad Song",R.drawable.sofaraway, R.raw.sofaraway));
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+            SearchManager searchManager= (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+            searchView= (SearchView) menu.findItem(R.id.action_search).getActionView();
+            searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+            searchView.setMaxWidth(Integer.MAX_VALUE);
+
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    adapter.getFilter().filter(query);
+                    return false;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    adapter.getFilter().filter(newText);
+                    return false;
+                }
+            });
+            return true;
+    }
+    @Override
+    public  void onBackPressed(){
+        if(!searchView.isIconfiedByDefault()){
+            searchView.setIconified(true);
+            return;
+        }
+        super.onBackPressed();
     }
 }

@@ -5,31 +5,30 @@
     android:background="#000000">
 
     <TextView
+        android:id="@+id/txtTitle"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="Playlists"
-        android:textSize="30sp"
-        android:layout_marginTop="20dp"
         android:layout_marginLeft="13dp"
-        android:textStyle="bold"
-        android:id="@+id/txtTitle"
+        android:layout_marginTop="20dp"
+        android:text="Playlists"
         android:textColor="#ffff"
-        />
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
-    <EditText
+   <EditText
+        android:id="@+id/edtSearch"
         android:layout_width="275dp"
         android:layout_height="50dp"
         android:layout_below="@+id/txtTitle"
+        android:layout_marginLeft="13dp"
         android:layout_marginTop="10dp"
+        android:background="@drawable/botron_button"
+        android:backgroundTint="#444444"
         android:hint="Search music"
+        android:paddingLeft="45dp"
         android:textColor="#ffff"
         android:textColorHint="#ffff"
-        android:id="@+id/edtSearch"
-        android:layout_marginLeft="13dp"
-        android:paddingLeft="45dp"
-        android:textSize="20sp"
-        android:background="@drawable/botron_button"
-        android:backgroundTint="#444444"/>
+        android:textSize="20sp" />
 
     <ImageView
         android:src="@drawable/search"
@@ -57,10 +56,11 @@
         />
 
     <ListView
+        android:id="@+id/lvMusic"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/btnSearch"
-        android:layout_marginTop="15dp"
-        android:id="@+id/lvMusic"/>
+        android:layout_marginTop="15dp" />
+
 
 </RelativeLayout>

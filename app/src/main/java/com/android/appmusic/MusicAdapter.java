@@ -12,12 +12,15 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
-public class MusicAdapter extends BaseAdapter  {
+public class MusicAdapter extends BaseAdapter implements Filterable {
     private Context context;
     private int layout;
     private List<Song>arraySong;
+    private List<Song>arraySongOld;
 
 
 
@@ -25,6 +28,7 @@ public class MusicAdapter extends BaseAdapter  {
         this.context = context;
         this.layout = layout;
         this.arraySong = arraySong;
+        this.arraySongOld=arraySong;
     }
 
     @Override
@@ -41,6 +45,8 @@ public class MusicAdapter extends BaseAdapter  {
     public long getItemId(int i) {
         return 0;
     }
+
+
 
 
     private class ViewHolder{
@@ -76,5 +82,36 @@ public class MusicAdapter extends BaseAdapter  {
         view.startAnimation(animation);
 
         return view;
+    }
+    @Override
+    public  Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String strSearch=charSequence.toString();
+                if(strSearch.isEmpty()){
+                    arraySong=arraySongOld;
+                } else {
+                    List<Song> list=new ArrayList<>();
+                    for(Song song : arraySongOld){
+                        if(song.getName().toLowerCase().contains(strSearch.toLowerCase())){
+                            list.add(song);
+                        }
+                    }
+
+                    arraySong=list;
+                }
+                FilterResults filterResults=new FilterResults();
+                filterResults.values=arraySong;
+
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                     arraySong=(List<Song>) filterResults.values;
+                     notifyDataSetChanged();
+            }
+        };
     }
 }
