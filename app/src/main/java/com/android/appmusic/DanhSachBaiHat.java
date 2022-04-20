@@ -30,8 +30,7 @@ public class DanhSachBaiHat extends AppCompatActivity {
     ListView lvMusic;
     List<Song> arraySong;
     MusicAdapter adapter;
-    EditText edtSearch;
-    Button btnSearch;
+
     ArrayList<String> arrayNameMusic;
     private SearchView searchView;
 
@@ -59,28 +58,12 @@ public class DanhSachBaiHat extends AppCompatActivity {
                   startActivity(intent);
             }
         });
-        btnSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(edtSearch.getText().toString().isEmpty()){
-                    Toast.makeText(DanhSachBaiHat.this,
-                            "Please enter search music",Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    String search = edtSearch.getText().toString();
-                    arraySong.clear();
 
-
-                }
-
-            }
-        });
 
     }
     private void Mapping(){
         lvMusic = (ListView) findViewById(R.id.lvMusic);
-        edtSearch = (EditText) findViewById(R.id.edtSearch);
-        btnSearch = (Button) findViewById(R.id.btnSearch);
+
     }
    public void addListSongs(){
         arraySong = new ArrayList<>();
@@ -126,4 +109,7 @@ public class DanhSachBaiHat extends AppCompatActivity {
         }
         super.onBackPressed();
     }
+
+
+
 }

@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">AppMusic</string>
-<string name="action_search">Search</string>
+    <string name="action_search">Search</string>
+    <string name="textview">Slander</string>
+    <string name="donuts">Hooligan</string>
+    <string name="ice_cream_sandwiches">Khalif</string>
+    <string name="froyo">Sasha Alex Sloan</string>
 </resources>

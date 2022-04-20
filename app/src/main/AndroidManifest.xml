@@ -9,11 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppMusic">
+
         <activity
             android:name=".PlayMusic"
             android:exported="false" />
         <activity
             android:name=".DanhSachBaiHat"
+            android:exported="false" />
+        <activity
+            android:name=".DanhSachNgheSi"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
